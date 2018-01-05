@@ -50,6 +50,7 @@ class RegisterForm(Form):
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
 	form = RegisterForm(request.form)
+
 	if request.method == 'POST' and form.validate():
 		name = form.name.data
 		email = form.email.data
@@ -73,9 +74,9 @@ def register():
 
 		redirect(url_for('index'))
 
-		return  render_template('register.html')
+		return  render_template('register.html', form=form)
 	return render_template('register.html', form = form)
 
 if __name__ == '__main__':
-	app.secret_key = 'secret123ch'
+	app.secret_key = 'secret123'
 	app.run(debug= True)
